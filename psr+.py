@@ -5,7 +5,7 @@ def psr(obj):
     obj.SetRelScale(c4d.Vector(1,1,1))
     obj.SetRelRot(c4d.Vector(0,0,0))
 
-def resetUsetData(obj):
+def resetUserData(obj):
     userData = obj.GetUserDataContainer()
     if not userData: return
 
@@ -26,7 +26,7 @@ def main():
             continue
         doc.AddUndo(c4d.UNDOTYPE_CHANGE, obj)
         psr(obj)
-        resetUsetData(obj)   
+        resetUserData(obj)   
     doc.EndUndo()
     c4d.EventAdd()  
       
