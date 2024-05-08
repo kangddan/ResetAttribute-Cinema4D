@@ -15,25 +15,20 @@ def resetUsetData(obj):
         if defaultValue is None:
             print('The property does not have a default valuet -> {}'.format(attrName))
             continue
-        try: obj[descId] = defaultValue 
+        try: obj[descId] = defaultValue
         except:
             print('The property does not have a default valuet -> {}'.format(attrName))
 
 def main():
-    sel = doc.GetSelection()
-    if not sel:
-        return
-
+    baseObjs = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_CHILDREN)
+    if not baseObjs: return
+        
     doc.StartUndo()
-    for obj in sel:
-        if not isinstance(obj, c4d.BaseObject):
-            continue
+    for obj in baseObjs:
         doc.AddUndo(c4d.UNDOTYPE_CHANGE, obj)
-        psr(obj)
-        resetUsetData(obj)
+        psr(obj); resetUsetData(obj)
     doc.EndUndo()
     c4d.EventAdd()
 
 if __name__ == '__main__':
     main()
-
