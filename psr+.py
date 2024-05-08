@@ -1,6 +1,4 @@
 import c4d
-import logging
-logger = logging.getLogger(__name__)
 
 def psr(obj):
     obj.SetRelPos(c4d.Vector(0,0,0))
